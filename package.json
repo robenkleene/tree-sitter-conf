@@ -1,22 +1,37 @@
 {
   "name": "tree-sitter-conf",
-  "version": "1.0.0",
-  "description": "Tree sitter grammar for `.conf` files",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "A tree sitter grammar for configuration files",
+  "main": "bindings/node",
   "scripts": {
-    "test": "tree-sitter test"
+    "test": "tree-sitter test",
+    "format": "prettier --trailing-comma es5 --write grammar.js",
+    "format-check": "prettier --trailing-comma es5 --check grammar.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/robenkleene/tree-sitter-conf.git"
   },
   "keywords": [
-    "tree-sitter"
+    "tree-sitter",
+    "parser",
+    "lexer",
+    "conf",
+    "configuration"
   ],
   "author": "robenkleene",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/robenkleene/tree-sitter-conf/issues"
   },
-  "homepage": "https://github.com/robenkleene/tree-sitter-conf#readme"
+  "homepage": "https://github.com/robenkleene/tree-sitter-conf#readme",
+  "tree-sitter": [
+    {
+      "file-types": [
+        "conf",
+        "tigrc",
+        "hosts"
+      ]
+    }
+  ]
 }
