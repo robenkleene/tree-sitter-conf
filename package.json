@@ -33,5 +33,8 @@
         "hosts"
       ]
     }
-  ]
+  ],
+  "dependencies": {
+    "nan": "^2.17.0"
+  }
 }
