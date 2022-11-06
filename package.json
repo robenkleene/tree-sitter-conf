@@ -1,0 +1,22 @@
+{
+  "name": "tree-sitter-conf",
+  "version": "1.0.0",
+  "description": "Tree sitter grammar for `.conf` files",
+  "main": "index.js",
+  "scripts": {
+    "test": "tree-sitter test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robenkleene/tree-sitter-conf.git"
+  },
+  "keywords": [
+    "tree-sitter"
+  ],
+  "author": "robenkleene",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robenkleene/tree-sitter-conf/issues"
+  },
+  "homepage": "https://github.com/robenkleene/tree-sitter-conf#readme"
+}
