@@ -8,30 +8,33 @@
 #define LANGUAGE_VERSION 14
 #define STATE_COUNT 5
 #define LARGE_STATE_COUNT 4
-#define SYMBOL_COUNT 4
+#define SYMBOL_COUNT 5
 #define ALIAS_COUNT 0
-#define TOKEN_COUNT 2
+#define TOKEN_COUNT 3
 #define EXTERNAL_TOKEN_COUNT 0
 #define FIELD_COUNT 0
 #define MAX_ALIAS_SEQUENCE_LENGTH 2
 #define PRODUCTION_ID_COUNT 1
 
 enum {
-  aux_sym_config_token1 = 1,
-  sym_config = 2,
-  aux_sym_config_repeat1 = 3,
+  sym_setting = 1,
+  sym_comment = 2,
+  sym_config = 3,
+  aux_sym_config_repeat1 = 4,
 };
 
 static const char * const ts_symbol_names[] = {
   [ts_builtin_sym_end] = "end",
-  [aux_sym_config_token1] = "config_token1",
+  [sym_setting] = "setting",
+  [sym_comment] = "comment",
   [sym_config] = "config",
   [aux_sym_config_repeat1] = "config_repeat1",
 };
 
 static const TSSymbol ts_symbol_map[] = {
   [ts_builtin_sym_end] = ts_builtin_sym_end,
-  [aux_sym_config_token1] = aux_sym_config_token1,
+  [sym_setting] = sym_setting,
+  [sym_comment] = sym_comment,
   [sym_config] = sym_config,
   [aux_sym_config_repeat1] = aux_sym_config_repeat1,
 };
@@ -41,9 +44,13 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = true,
   },
-  [aux_sym_config_token1] = {
-    .visible = false,
-    .named = false,
+  [sym_setting] = {
+    .visible = true,
+    .named = true,
+  },
+  [sym_comment] = {
+    .visible = true,
+    .named = true,
   },
   [sym_config] = {
     .visible = true,
@@ -77,20 +84,35 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
   switch (state) {
     case 0:
       if (eof) ADVANCE(1);
+      if (lookahead == '\n') SKIP(0)
+      if (lookahead == '#') ADVANCE(4);
       if (lookahead == '\t' ||
-          lookahead == '\n' ||
           lookahead == '\r' ||
-          lookahead == ' ') SKIP(0)
-      if (('0' <= lookahead && lookahead <= '9') ||
-          ('A' <= lookahead && lookahead <= 'Z') ||
-          lookahead == '_' ||
-          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(2);
+          lookahead == ' ') ADVANCE(2);
+      if (lookahead != 0) ADVANCE(3);
       END_STATE();
     case 1:
       ACCEPT_TOKEN(ts_builtin_sym_end);
       END_STATE();
     case 2:
-      ACCEPT_TOKEN(aux_sym_config_token1);
+      ACCEPT_TOKEN(sym_setting);
+      if (lookahead == '\t' ||
+          lookahead == '\r' ||
+          lookahead == ' ') ADVANCE(2);
+      if (lookahead != 0 &&
+          lookahead != '\n' &&
+          lookahead != '#') ADVANCE(3);
+      END_STATE();
+    case 3:
+      ACCEPT_TOKEN(sym_setting);
+      if (lookahead != 0 &&
+          lookahead != '\n' &&
+          lookahead != '#') ADVANCE(3);
+      END_STATE();
+    case 4:
+      ACCEPT_TOKEN(sym_comment);
+      if (lookahead != 0 &&
+          lookahead != '\n') ADVANCE(4);
       END_STATE();
     default:
       return false;
@@ -108,29 +130,33 @@ static const TSLexMode ts_lex_modes[STATE_COUNT] = {
 static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [0] = {
     [ts_builtin_sym_end] = ACTIONS(1),
-    [aux_sym_config_token1] = ACTIONS(1),
+    [sym_setting] = ACTIONS(1),
+    [sym_comment] = ACTIONS(1),
   },
   [1] = {
     [sym_config] = STATE(4),
     [aux_sym_config_repeat1] = STATE(2),
     [ts_builtin_sym_end] = ACTIONS(3),
-    [aux_sym_config_token1] = ACTIONS(5),
+    [sym_setting] = ACTIONS(5),
+    [sym_comment] = ACTIONS(7),
   },
   [2] = {
     [aux_sym_config_repeat1] = STATE(3),
-    [ts_builtin_sym_end] = ACTIONS(7),
-    [aux_sym_config_token1] = ACTIONS(9),
+    [ts_builtin_sym_end] = ACTIONS(9),
+    [sym_setting] = ACTIONS(11),
+    [sym_comment] = ACTIONS(13),
   },
   [3] = {
     [aux_sym_config_repeat1] = STATE(3),
-    [ts_builtin_sym_end] = ACTIONS(11),
-    [aux_sym_config_token1] = ACTIONS(13),
+    [ts_builtin_sym_end] = ACTIONS(15),
+    [sym_setting] = ACTIONS(17),
+    [sym_comment] = ACTIONS(20),
   },
 };
 
 static const uint16_t ts_small_parse_table[] = {
   [0] = 1,
-    ACTIONS(16), 1,
+    ACTIONS(23), 1,
       ts_builtin_sym_end,
 };
 
@@ -143,11 +169,14 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
   [3] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_config, 0),
   [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2),
-  [7] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_config, 1),
-  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(3),
-  [11] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_config_repeat1, 2),
-  [13] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_config_repeat1, 2), SHIFT_REPEAT(3),
-  [16] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
+  [7] = {.entry = {.count = 1, .reusable = false}}, SHIFT(2),
+  [9] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_config, 1),
+  [11] = {.entry = {.count = 1, .reusable = true}}, SHIFT(3),
+  [13] = {.entry = {.count = 1, .reusable = false}}, SHIFT(3),
+  [15] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_config_repeat1, 2),
+  [17] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_config_repeat1, 2), SHIFT_REPEAT(3),
+  [20] = {.entry = {.count = 2, .reusable = false}}, REDUCE(aux_sym_config_repeat1, 2), SHIFT_REPEAT(3),
+  [23] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
 };
 
 #ifdef __cplusplus

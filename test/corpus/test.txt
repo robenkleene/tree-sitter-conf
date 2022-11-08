@@ -6,9 +6,16 @@ Test name
 #A comment
 # Another comment
 text#text
-set mouse = true
+set mouse = true # A comment
 set-option -g mouse on
 
 ---
 
-(config)
+(config
+  (setting)
+  (comment)
+  (comment)
+  (setting)
+  (comment)
+  (setting)
+  (setting))

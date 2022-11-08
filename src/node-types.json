@@ -2,6 +2,28 @@
   {
     "type": "config",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "setting",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "setting",
+    "named": true
   }
 ]

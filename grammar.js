@@ -1,6 +1,12 @@
 module.exports = grammar({
   name: "conf",
   rules: {
-    config: $ => repeat(/\w/)
+    config: $ => repeat(choice(
+      $.setting,
+      $.comment
+    )),
+    setting: $ => /[^#\n]+/,
+    comment: $ => token(seq('#', /.*/)),
   }
+
 });
