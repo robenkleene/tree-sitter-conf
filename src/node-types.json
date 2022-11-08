@@ -1,11 +1,7 @@
 [
   {
-    "type": "source_file",
+    "type": "program",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "hello",
-    "named": false
   }
 ]

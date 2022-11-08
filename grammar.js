@@ -1,8 +1,6 @@
 module.exports = grammar({
-  name: 'YOUR_LANGUAGE_NAME',
-
+  name: "conf",
   rules: {
-    // TODO: add the actual grammar rules
-    source_file: $ => 'hello'
+    program: $ => repeat(/\w/)
   }
 });
