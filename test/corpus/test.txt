@@ -2,7 +2,12 @@
 Test name
 =====
 
-test body
+127.0.0.1 localhost
+#A comment
+# Another comment
+text#text
+set mouse = true
+set-option -g mouse on
 
 ---
 
