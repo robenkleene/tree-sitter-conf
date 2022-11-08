@@ -17,23 +17,23 @@
 #define PRODUCTION_ID_COUNT 1
 
 enum {
-  aux_sym_program_token1 = 1,
-  sym_program = 2,
-  aux_sym_program_repeat1 = 3,
+  aux_sym_config_token1 = 1,
+  sym_config = 2,
+  aux_sym_config_repeat1 = 3,
 };
 
 static const char * const ts_symbol_names[] = {
   [ts_builtin_sym_end] = "end",
-  [aux_sym_program_token1] = "program_token1",
-  [sym_program] = "program",
-  [aux_sym_program_repeat1] = "program_repeat1",
+  [aux_sym_config_token1] = "config_token1",
+  [sym_config] = "config",
+  [aux_sym_config_repeat1] = "config_repeat1",
 };
 
 static const TSSymbol ts_symbol_map[] = {
   [ts_builtin_sym_end] = ts_builtin_sym_end,
-  [aux_sym_program_token1] = aux_sym_program_token1,
-  [sym_program] = sym_program,
-  [aux_sym_program_repeat1] = aux_sym_program_repeat1,
+  [aux_sym_config_token1] = aux_sym_config_token1,
+  [sym_config] = sym_config,
+  [aux_sym_config_repeat1] = aux_sym_config_repeat1,
 };
 
 static const TSSymbolMetadata ts_symbol_metadata[] = {
@@ -41,15 +41,15 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = true,
   },
-  [aux_sym_program_token1] = {
+  [aux_sym_config_token1] = {
     .visible = false,
     .named = false,
   },
-  [sym_program] = {
+  [sym_config] = {
     .visible = true,
     .named = true,
   },
-  [aux_sym_program_repeat1] = {
+  [aux_sym_config_repeat1] = {
     .visible = false,
     .named = false,
   },
@@ -90,7 +90,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(ts_builtin_sym_end);
       END_STATE();
     case 2:
-      ACCEPT_TOKEN(aux_sym_program_token1);
+      ACCEPT_TOKEN(aux_sym_config_token1);
       END_STATE();
     default:
       return false;
@@ -108,23 +108,23 @@ static const TSLexMode ts_lex_modes[STATE_COUNT] = {
 static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [0] = {
     [ts_builtin_sym_end] = ACTIONS(1),
-    [aux_sym_program_token1] = ACTIONS(1),
+    [aux_sym_config_token1] = ACTIONS(1),
   },
   [1] = {
-    [sym_program] = STATE(4),
-    [aux_sym_program_repeat1] = STATE(2),
+    [sym_config] = STATE(4),
+    [aux_sym_config_repeat1] = STATE(2),
     [ts_builtin_sym_end] = ACTIONS(3),
-    [aux_sym_program_token1] = ACTIONS(5),
+    [aux_sym_config_token1] = ACTIONS(5),
   },
   [2] = {
-    [aux_sym_program_repeat1] = STATE(3),
+    [aux_sym_config_repeat1] = STATE(3),
     [ts_builtin_sym_end] = ACTIONS(7),
-    [aux_sym_program_token1] = ACTIONS(9),
+    [aux_sym_config_token1] = ACTIONS(9),
   },
   [3] = {
-    [aux_sym_program_repeat1] = STATE(3),
+    [aux_sym_config_repeat1] = STATE(3),
     [ts_builtin_sym_end] = ACTIONS(11),
-    [aux_sym_program_token1] = ACTIONS(13),
+    [aux_sym_config_token1] = ACTIONS(13),
   },
 };
 
@@ -141,12 +141,12 @@ static const uint32_t ts_small_parse_table_map[] = {
 static const TSParseActionEntry ts_parse_actions[] = {
   [0] = {.entry = {.count = 0, .reusable = false}},
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
-  [3] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_program, 0),
+  [3] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_config, 0),
   [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2),
-  [7] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_program, 1),
+  [7] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_config, 1),
   [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(3),
-  [11] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_program_repeat1, 2),
-  [13] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_program_repeat1, 2), SHIFT_REPEAT(3),
+  [11] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_config_repeat1, 2),
+  [13] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_config_repeat1, 2), SHIFT_REPEAT(3),
   [16] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
 };
 
