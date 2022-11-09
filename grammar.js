@@ -6,7 +6,7 @@ module.exports = grammar({
       $.comment
     )),
     setting: $ => /[^#\n]+/,
-    comment: $ => token(seq('#', /.*/)),
+    comment: $ => /#[^\n]*/,
   }
 
 });
