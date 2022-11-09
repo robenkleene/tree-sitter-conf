@@ -8,5 +8,4 @@ module.exports = grammar({
     setting: $ => /[^#\n]+/,
     comment: $ => /#[^\n]*/,
   }
-
 });
