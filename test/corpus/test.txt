@@ -16,6 +16,6 @@ set-option -g mouse on
   (comment)
   (comment)
   (setting)
-  (comment)
   (setting)
+  (comment)
   (setting))
