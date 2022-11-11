@@ -7,5 +7,7 @@ module.exports = grammar({
     )),
     setting: $ => /[^#\n]+/,
     comment: $ => /#[^\n]*/,
+    // comment: $ => /^#[^\n]*/,
+    // comment: $ => /\s#[^\n]*/,
   }
 });
