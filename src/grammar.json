@@ -4,22 +4,17 @@
     "config": {
       "type": "REPEAT",
       "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "setting"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "comment"
-          }
-        ]
+        "type": "SYMBOL",
+        "name": "setting"
       }
     },
     "setting": {
       "type": "PATTERN",
-      "value": "[^#\\n]+"
+      "value": "[^\\n]+"
+    },
+    "comment_inline": {
+      "type": "PATTERN",
+      "value": "\\s#[^\\n]*"
     },
     "comment": {
       "type": "PATTERN",
@@ -28,8 +23,16 @@
   },
   "extras": [
     {
+      "type": "SYMBOL",
+      "name": "comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment_inline"
+    },
+    {
       "type": "PATTERN",
-      "value": "\\s"
+      "value": "[ \\f\\r\\t\\v]"
     }
   ],
   "conflicts": [],

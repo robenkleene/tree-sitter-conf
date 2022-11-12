@@ -8,10 +8,6 @@
       "required": false,
       "types": [
         {
-          "type": "comment",
-          "named": true
-        },
-        {
           "type": "setting",
           "named": true
         }
@@ -20,6 +16,10 @@
   },
   {
     "type": "comment",
+    "named": true
+  },
+  {
+    "type": "comment_inline",
     "named": true
   },
   {
