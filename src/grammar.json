@@ -12,13 +12,34 @@
       "type": "PATTERN",
       "value": "[^\\n]+"
     },
-    "comment_inline": {
-      "type": "PATTERN",
-      "value": "\\s#[^\\n]*"
-    },
     "comment": {
-      "type": "PATTERN",
-      "value": "#[^\\n]*"
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "#"
+                }
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^\\n]*"
+              }
+            ]
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\s#[^\\n]*"
+          }
+        ]
+      }
     }
   },
   "extras": [
@@ -27,12 +48,8 @@
       "name": "comment"
     },
     {
-      "type": "SYMBOL",
-      "name": "comment_inline"
-    },
-    {
       "type": "PATTERN",
-      "value": "[ \\f\\r\\t\\v]"
+      "value": "[ \\f\\r\\t\\v\\n]"
     }
   ],
   "conflicts": [],

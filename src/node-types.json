@@ -1,5 +1,10 @@
 [
   {
+    "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "config",
     "named": true,
     "fields": {},
@@ -15,12 +20,8 @@
     }
   },
   {
-    "type": "comment",
-    "named": true
-  },
-  {
-    "type": "comment_inline",
-    "named": true
+    "type": "#",
+    "named": false
   },
   {
     "type": "setting",
