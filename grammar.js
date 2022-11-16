@@ -6,8 +6,9 @@ module.exports = grammar({
   ],
   rules: {
     config: $ => repeat($.setting),
-    setting: $ => /[^\n]+/,
-    comment: $ => prec(1, choice(seq(token.immediate("#"), /[^\n]*/),
-                                 /\s#[^\n]*/)),
+    setting: _ => /[^\n]+/,
+    // comment: $ => prec(1, choice(seq(token.immediate("#"), /[^\n]*/),
+    //                              /\s#[^\n]*/)),
+    comment: _ => prec(1, seq('#', /[^\n]*/)),
   }
 });

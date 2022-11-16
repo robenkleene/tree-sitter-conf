@@ -16,27 +16,15 @@
       "type": "PREC",
       "value": 1,
       "content": {
-        "type": "CHOICE",
+        "type": "SEQ",
         "members": [
           {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "IMMEDIATE_TOKEN",
-                "content": {
-                  "type": "STRING",
-                  "value": "#"
-                }
-              },
-              {
-                "type": "PATTERN",
-                "value": "[^\\n]*"
-              }
-            ]
+            "type": "STRING",
+            "value": "#"
           },
           {
             "type": "PATTERN",
-            "value": "\\s#[^\\n]*"
+            "value": "[^\\n]*"
           }
         ]
       }
