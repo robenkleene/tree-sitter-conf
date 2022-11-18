@@ -1,14 +1,13 @@
 module.exports = grammar({
   name: "conf",
-  extras: $ => [
-    $.comment,
+  extras: _ => [
     /[ \f\r\t\v\n]/,
   ],
   rules: {
-    config: $ => repeat($.setting),
+    config: $ => repeat(choice($.comment, $.setting)),
     setting: _ => /[^\n]+/,
     // comment: $ => prec(1, choice(seq(token.immediate("#"), /[^\n]*/),
     //                              /\s#[^\n]*/)),
-    comment: _ => prec(1, seq('#', /[^\n]*/)),
+    comment: _ => prec(10, seq('#', /[^\n]*/)),
   }
 });

@@ -4,8 +4,17 @@
     "config": {
       "type": "REPEAT",
       "content": {
-        "type": "SYMBOL",
-        "name": "setting"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "comment"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "setting"
+          }
+        ]
       }
     },
     "setting": {
@@ -14,7 +23,7 @@
     },
     "comment": {
       "type": "PREC",
-      "value": 1,
+      "value": 10,
       "content": {
         "type": "SEQ",
         "members": [
@@ -31,10 +40,6 @@
     }
   },
   "extras": [
-    {
-      "type": "SYMBOL",
-      "name": "comment"
-    },
     {
       "type": "PATTERN",
       "value": "[ \\f\\r\\t\\v\\n]"
