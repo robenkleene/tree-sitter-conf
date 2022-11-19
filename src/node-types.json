@@ -20,10 +20,6 @@
     }
   },
   {
-    "type": "#",
-    "named": false
-  },
-  {
     "type": "setting",
     "named": true
   }

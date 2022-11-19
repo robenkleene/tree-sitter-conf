@@ -8,7 +8,7 @@ module.exports = grammar({
     config: $ => repeat($.setting),
     setting: _ => /[^\n]+/,
     comment: _ => choice(
-      seq(token.immediate("#"), /[^\n]*/),
+      token(seq(token.immediate("#"), /[^\n]*/)),
       /\s#[^\n]*/),
   }
 });

@@ -16,20 +16,23 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "IMMEDIATE_TOKEN",
-              "content": {
-                "type": "STRING",
-                "value": "#"
+          "type": "TOKEN",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "#"
+                }
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^\\n]*"
               }
-            },
-            {
-              "type": "PATTERN",
-              "value": "[^\\n]*"
-            }
-          ]
+            ]
+          }
         },
         {
           "type": "PATTERN",
@@ -41,7 +44,7 @@
   "extras": [
     {
       "type": "PATTERN",
-      "value": "[ \\f\\r\\t\\v\\n]"
+      "value": "[ \\f\\r\\t\\v\\n\\0]"
     },
     {
       "type": "SYMBOL",
