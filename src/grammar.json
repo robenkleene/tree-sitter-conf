@@ -4,17 +4,8 @@
     "config": {
       "type": "REPEAT",
       "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "comment"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "setting"
-          }
-        ]
+        "type": "SYMBOL",
+        "name": "setting"
       }
     },
     "setting": {
@@ -22,27 +13,39 @@
       "value": "[^\\n]+"
     },
     "comment": {
-      "type": "PREC",
-      "value": 10,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "#"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[^\\n]*"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "#"
+              }
+            },
+            {
+              "type": "PATTERN",
+              "value": "[^\\n]*"
+            }
+          ]
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\s#[^\\n]*"
+        }
+      ]
     }
   },
   "extras": [
     {
       "type": "PATTERN",
       "value": "[ \\f\\r\\t\\v\\n]"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "conflicts": [],

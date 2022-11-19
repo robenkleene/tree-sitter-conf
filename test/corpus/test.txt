@@ -27,11 +27,14 @@ Test settings that include comment token
 ================================================================================
 
 text#text
+text#text#text # An actual comment
 
 --------------------------------------------------------------------------------
 
 (config
-  (setting))
+  (setting)
+  (setting)
+  (comment))
 
 ================================================================================
 Test settings with trailing comments
